@@ -1,9 +1,5 @@
-{
-<<<<<<< HEAD
-  "name": "my-next-app",
-=======
+  {
   "name": "szpital",
->>>>>>> 569fde63fcd67f3f07967f05d1b3c4750bf9719a
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,19 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@tailwindcss/cli": "^4.1.11",
-    "autoprefixer": "^10.4.21",
-    "next": "15.3.4",
-    "postcss": "^8.5.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "serve-favicon": "^2.5.1"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.11",
-=======
     "@prisma/client": "^6.11.0",
     "next": "15.3.4",
     "react": "^19.0.0",
@@ -34,18 +17,13 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
->>>>>>> 569fde63fcd67f3f07967f05d1b3c4750bf9719a
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
-<<<<<<< HEAD
-    "tailwindcss": "^4.1.11",
-=======
     "prisma": "^6.11.0",
     "tailwindcss": "^4",
->>>>>>> 569fde63fcd67f3f07967f05d1b3c4750bf9719a
     "typescript": "^5"
   }
 }

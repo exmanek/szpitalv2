@@ -48,8 +48,8 @@ return (
 <span className="text-xl font-bold text-blue-600">Centralny szpital spierdolenia</span>
 </Link>
 <div className="hidden md:flex space-x-6">
-<Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors">O nas</Link>
-<Link href="/services" className="text-gray-600 hover:text-blue-600 transition-colors">Usługi</Link>
+<Link href="/onas" className="text-gray-600 hover:text-blue-600 transition-colors">O nas</Link>
+<Link href="/uslugi" className="text-gray-600 hover:text-blue-600 transition-colors">Usługi</Link>
 <Link href="/doctors" className="text-gray-600 hover:text-blue-600 transition-colors">Kadra medyczna</Link>
 <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">Kontakt</Link>
 </div>
@@ -237,7 +237,7 @@ Patient Portal
               width={600}
 
               height={600}
-              className='ml-15'
+              className='ml-2'
 
 
             />
@@ -309,7 +309,7 @@ Patient Portal
 
           <ul className="space-y-2">
 
-            <li><Link href="/about" className="text-gray-300 hover:text-white transition-colors">O nas</Link></li>
+            <li><Link href="/onas" className="text-gray-300 hover:text-white transition-colors">O nas</Link></li>
 
             <li><Link href="/doctors" className="text-gray-300 hover:text-white transition-colors">Nasi doktorzy</Link></li>
 
@@ -345,7 +345,7 @@ Patient Portal
 
           <p className="text-gray-300 mb-2">Całodobowy oddział ratunkowy (24/7)</p>
 
-          <p className="text-xl font-bold text-red-400">+48 987 654 321</p>
+          <p className="text-xl font-bold text-red-400">+48 123 456 789</p>
 
 
         </div>

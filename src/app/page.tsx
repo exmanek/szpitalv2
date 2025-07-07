@@ -114,7 +114,7 @@ Patient Portal
         width={1000}
 
         height={1000}
-        className='mr-5'
+        className='p-2'
 
 
 

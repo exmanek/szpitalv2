@@ -1,8 +1,4 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js",
-  "/panelpacjent/page": "app/panelpacjent/page.js",
-  "/register/page": "app/register/page.js",
-  "/umowwizyte/page": "app/umowwizyte/page.js"
+  "/page": "app/page.js"
 }

@@ -50,8 +50,8 @@ return (
 <div className="hidden md:flex space-x-6">
 <Link href="/onas" className="text-gray-600 hover:text-blue-600 transition-colors">O nas</Link>
 <Link href="/uslugi" className="text-gray-600 hover:text-blue-600 transition-colors">Usługi</Link>
-<Link href="/doctors" className="text-gray-600 hover:text-blue-600 transition-colors">Kadra medyczna</Link>
-<Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">Kontakt</Link>
+<Link href="/kadramedyczna" className="text-gray-600 hover:text-blue-600 transition-colors">Kadra medyczna</Link>
+<Link href="/kontakt" className="text-gray-600 hover:text-blue-600 transition-colors">Kontakt</Link>
 </div>
 <Link href="/login" className="btn-secondary hover:bg-blue-600 p-2 rounded-lg text-blue-600 hover:text-white hover:scale-105 transition-transform duration-600">
 Patient Portal
@@ -183,7 +183,7 @@ Patient Portal
 
           >
 
-            <div className="p-6">
+            <div className="p-6 ">
 
               <div className="text-4xl mb-4">{dept.icon}</div>
 
@@ -195,19 +195,12 @@ Patient Portal
 
               </p>
 
-              <div className="text-blue-600 hover:underline font-medium flex items-center">
+             
 
-               Zobacz szczegóły
-
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-
-                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-
-                </svg>
+               
 
               </div>
 
-            </div>
 
           </Link>
 

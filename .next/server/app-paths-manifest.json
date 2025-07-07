@@ -1,10 +1,9 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/kadramedyczna/page": "app/kadramedyczna/page.js",
+  "/kontakt/page": "app/kontakt/page.js",
   "/login/page": "app/login/page.js",
   "/onas/page": "app/onas/page.js",
   "/page": "app/page.js",
-  "/panelpacjent/page": "app/panelpacjent/page.js",
-  "/register/page": "app/register/page.js",
-  "/umowwizyte/page": "app/umowwizyte/page.js",
   "/uslugi/page": "app/uslugi/page.js"
 }

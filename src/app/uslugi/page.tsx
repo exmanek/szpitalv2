@@ -56,7 +56,7 @@ export default function ServicesPage() {
 
 function ServiceCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow hover:scale-[1.02]">
+    <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow hover:scale-[1.02] transition-transform duration-300">
       <div className="text-4xl text-blue-600 mb-4">{icon}</div>
       <h3 className="font-semibold text-lg mb-2">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>

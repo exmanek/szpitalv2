@@ -7,24 +7,37 @@ export default function RegisterPage() {
   const router = useRouter();
 
   const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [registered, setRegistered] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
 
-    const userData = { name, email, phone, password };
+    const userData = { name, surname, email, password };
 
-    // Zapisz dane użytkownika do localStorage
-    localStorage.setItem('registeredUser', JSON.stringify(userData));
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+      });
 
-    setRegistered(true);
+      const data = await res.json();
 
-    setTimeout(() => {
-      router.push('/login');
-    }, 1500);
+      if (res.ok) {
+        setRegistered(true);
+        setTimeout(() => router.push('/login'), 1500);
+      } else {
+        setError(data.error || 'Coś poszło nie tak');
+      }
+    } catch {
+      setError('Błąd połączenia z serwerem');
+    }
   };
 
   return (
@@ -37,12 +50,23 @@ export default function RegisterPage() {
         ) : (
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Imię i nazwisko</label>
+              <label className="block text-sm font-medium mb-1">Imię</label>
               <input
                 type="text"
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Nazwisko</label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
                 required
               />
             </div>
@@ -59,13 +83,12 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Telefon</label>
+              <label className="block text-sm font-medium mb-1">Telefon (opcjonalnie)</label>
               <input
                 type="tel"
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                required
               />
             </div>
 
@@ -79,6 +102,8 @@ export default function RegisterPage() {
                 required
               />
             </div>
+
+            {error && <p className="text-red-600 text-center">{error}</p>}
 
             <button
               type="submit"

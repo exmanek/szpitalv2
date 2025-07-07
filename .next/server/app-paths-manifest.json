@@ -1,4 +1,10 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/admin/user/route": "app/api/admin/user/route.js",
+  "/api/auth/register/route": "app/api/auth/register/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/panelpacjent/page": "app/panelpacjent/page.js",
+  "/register/page": "app/register/page.js"
 }

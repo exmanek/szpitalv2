@@ -4,8 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaHeartbeat, FaUserMd, FaHospitalAlt, FaAmbulance, FaBrain, FaXRay, FaChild, FaBone, FaHandHoldingHeart, FaBaby } from "react-icons/fa";
 
+import Navbar from "@components/navbar";
+
 export default function AboutPage() {
   return (
+
+    <div className="min-h-screen bg-gray-100">
+      <nav className="bg-white shadow-sm py-4">
+        <Navbar />
+      </nav>
     <main className="max-w-6xl mx-auto px-4 py-10">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -111,5 +118,6 @@ export default function AboutPage() {
         <p className="text-xl font-bold text-red-600">📞 Telefon alarmowy: +48 123 456 789</p>
       </motion.section>
     </main>
+    </div>
   );
 }

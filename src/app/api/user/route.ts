@@ -2,33 +2,26 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 
-// CREATE — POST /api/admin/user
+// POST /api/user
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { name, surname, email, password, role } = body
+  const { name, surname, email, password } = body
 
-  if (!['DOCTOR', 'PATIENT'].includes(role)) {
-    return NextResponse.json({ error: 'Invalid role' }, { status: 400 })
+  if (!name || !surname || !email || !password) {
+    return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10)
-
   try {
+    const hashedPassword = await bcrypt.hash(password, 10)
+
     const user = await prisma.user.create({
       data: {
         name,
         surname,
         email,
         password: hashedPassword,
-        role,
       },
     })
-
-    if (role === 'DOCTOR') {
-      await prisma.doctorProfile.create({ data: { userId: user.id } })
-    } else if (role === 'PATIENT') {
-      await prisma.patientProfile.create({ data: { userId: user.id } })
-    }
 
     return NextResponse.json({ success: true, user })
   } catch (err) {
@@ -36,37 +29,28 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// READ — GET /api/admin/user?id=123
+// GET /api/user?id=123
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
 
   if (id) {
     const user = await prisma.user.findUnique({
-      where: { id: Number(id) },
-      include: {
-        Doctor: true,
-        Patient: true,
-      },
+      where: { userId: Number(id) },
     })
 
-    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
 
     return NextResponse.json(user)
   } else {
-    const users = await prisma.user.findMany({
-      include: {
-        Doctor: true,
-        Patient: true,
-      },
-    })
-
+    const users = await prisma.user.findMany()
     return NextResponse.json(users)
   }
 }
 
-
-// UPDATE — PUT /api/admin/user?id=123
+// PUT /api/user?id=123
 export async function PUT(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
@@ -84,7 +68,7 @@ export async function PUT(req: NextRequest) {
     if (password) updateData.password = await bcrypt.hash(password, 10)
 
     const user = await prisma.user.update({
-      where: { id: Number(id) },
+      where: { userId: Number(id) },
       data: updateData,
     })
 
@@ -94,7 +78,7 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-// DELETE — DELETE /api/admin/user?id=123
+// DELETE /api/user?id=123
 export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
@@ -103,7 +87,7 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await prisma.user.delete({
-      where: { id: Number(id) },
+      where: { userId: Number(id) },
     })
 
     return NextResponse.json({ success: true, message: 'User deleted' })

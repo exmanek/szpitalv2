@@ -389,16 +389,8 @@
     margin-bottom: calc(var(--spacing) * 14);
   }
 
-  .ml-1 {
-    margin-left: calc(var(--spacing) * 1);
-  }
-
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
-  }
-
-  .ml-15 {
-    margin-left: calc(var(--spacing) * 15);
   }
 
   .block {
@@ -417,10 +409,6 @@
     display: none;
   }
 
-  .h-5 {
-    height: calc(var(--spacing) * 5);
-  }
-
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -431,10 +419,6 @@
 
   .min-h-screen {
     min-height: 100vh;
-  }
-
-  .w-5 {
-    width: calc(var(--spacing) * 5);
   }
 
   .w-full {

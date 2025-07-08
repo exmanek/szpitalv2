@@ -8,52 +8,45 @@ datasource db {
 }
 
 model User {
-  id       Int             @id @default(autoincrement())
-  name     String
-  surname  String
-  email    String          @unique
-  password String
-  role     UserRole        @default(PATIENT)
-  Doctor   DoctorProfile?  @relation("DoctorToUser")
-  Patient  PatientProfile? @relation("PatientToUser")
+  userId     Int           @id @default(autoincrement())
+  name       String
+  surname    String
+  email      String        @unique
+  password   String
+  phone      String
+  appointments Appointment[]
 }
 
-model DoctorProfile {
-  userId         Int              @id
-  appointments   Appointment[]    @relation("DoctorAppointments")
-  user           User             @relation("DoctorToUser", fields: [userId], references: [id])
+model Doctor {
+  doctorId       Int              @id @default(autoincrement())
+  name           String
+  surname        String
+  email          String           @unique
+  password       String
+
   specialization Specialization[] @relation("DoctorSpecialization")
+  appointments   Appointment[]    @relation("DoctorAppointments")
 }
 
 model Specialization {
-  id      Int             @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   name    String
-  doctors DoctorProfile[] @relation("DoctorSpecialization")
-}
-
-model PatientProfile {
-  userId       Int           @id
-  appointments Appointment[] @relation("PatientAppointments")
-  user         User          @relation("PatientToUser", fields: [userId], references: [id])
+  doctors Doctor[] @relation("DoctorSpecialization")
 }
 
 model Appointment {
   id        Int               @id @default(autoincrement())
   date      DateTime
   doctorId  Int
-  patientId Int
+  userId    Int
   status    AppointmentStatus @default(SCHEDULED)
-  doctor    DoctorProfile     @relation("DoctorAppointments", fields: [doctorId], references: [userId])
-  patient   PatientProfile    @relation("PatientAppointments", fields: [patientId], references: [userId])
-}
-
-enum UserRole {
-  DOCTOR
-  PATIENT
+  doctor    Doctor @relation("DoctorAppointments", fields: [doctorId], references: [doctorId])
+  patient   User   @relation(fields: [userId], references: [userId])
 }
 
 enum AppointmentStatus {
   SCHEDULED
   COMPLETED
   CANCELLED
+  FINISHED
 }

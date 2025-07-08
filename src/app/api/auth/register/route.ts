@@ -16,7 +16,6 @@ export async function POST(req: NextRequest) {
                 surname,
                 email,
                 password: hashedPassword,
-                role: 'PATIENT', //Zakladanie konta przez pacjenta ez
             },
         })
 

@@ -14,9 +14,14 @@ import {
   FaBriefcaseMedical,
   FaClinicMedical,
 } from "react-icons/fa";
+import Navbar from "@components/navbar";
 
 export default function ServicesPage() {
   return (
+    <div className="min-h-screen bg-gray-100">
+      <nav className="bg-white shadow-sm py-4">
+        <Navbar />
+      </nav>
     <main className="max-w-6xl mx-auto px-4 py-10">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -51,6 +56,7 @@ export default function ServicesPage() {
         </div>
       </motion.section>
     </main>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Navbar from "@/components/navbar";
 
 interface StaffMember {
   name: string;
@@ -87,6 +88,10 @@ const staff: StaffMember[] = [
 
 export default function MedicalStaffPage() {
   return (
+    <div className="min-h-screen bg-gray-100">
+    <nav className="bg-white shadow-sm py-4">
+      <Navbar />
+    </nav>
     <main className="max-w-6xl mx-auto px-4 py-10">
       <motion.h1
         className="text-4xl font-bold text-blue-800 mb-10"
@@ -124,5 +129,6 @@ export default function MedicalStaffPage() {
         ))}
       </section>
     </main>
+    </div>
   );
 }

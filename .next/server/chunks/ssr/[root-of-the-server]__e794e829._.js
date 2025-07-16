@@ -58,14 +58,20 @@ function PanelPacjent() {
     const [appointments, setAppointments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isEditing, setIsEditing] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const storedUser = localStorage.getItem('registeredUser');
-        if (storedUser) {
-            setPatient(JSON.parse(storedUser));
-        }
-        const storedAppointments = localStorage.getItem('appointments');
-        if (storedAppointments) {
-            setAppointments(JSON.parse(storedAppointments));
-        }
+        const fetchData = async ()=>{
+            const res = await fetch('/api/me');
+            if (res.ok) {
+                const userData = await res.json();
+                setPatient({
+                    name: userData.name,
+                    email: userData.email,
+                    phone: userData.phone,
+                    patientId: `PL-${userData.id}`,
+                    password: ''
+                });
+            }
+        };
+        fetchData();
     }, []);
     const handleChange = (field, value)=>{
         setPatient((prev)=>({
@@ -95,7 +101,7 @@ function PanelPacjent() {
                 children: "Panel pacjenta"
             }, void 0, false, {
                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                lineNumber: 58,
+                lineNumber: 64,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -106,7 +112,7 @@ function PanelPacjent() {
                         children: "Dane pacjenta"
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 61,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, this),
                     isEditing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -123,7 +129,7 @@ function PanelPacjent() {
                                         children: field === 'name' ? 'Imię i nazwisko' : field
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 74,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -133,18 +139,18 @@ function PanelPacjent() {
                                         className: "w-full border px-3 py-2 rounded"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 71,
+                                        lineNumber: 77,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, field, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 67,
+                                lineNumber: 73,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 64,
+                        lineNumber: 70,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                         children: [
@@ -154,7 +160,7 @@ function PanelPacjent() {
                                         children: "Imię i nazwisko:"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 82,
+                                        lineNumber: 88,
                                         columnNumber: 16
                                     }, this),
                                     " ",
@@ -162,7 +168,7 @@ function PanelPacjent() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 82,
+                                lineNumber: 88,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -171,7 +177,7 @@ function PanelPacjent() {
                                         children: "E-mail:"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 89,
                                         columnNumber: 16
                                     }, this),
                                     " ",
@@ -179,7 +185,7 @@ function PanelPacjent() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 83,
+                                lineNumber: 89,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -188,7 +194,7 @@ function PanelPacjent() {
                                         children: "Telefon:"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 90,
                                         columnNumber: 16
                                     }, this),
                                     " ",
@@ -196,7 +202,7 @@ function PanelPacjent() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 84,
+                                lineNumber: 90,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -205,7 +211,7 @@ function PanelPacjent() {
                                         children: "ID pacjenta:"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 85,
+                                        lineNumber: 91,
                                         columnNumber: 16
                                     }, this),
                                     " ",
@@ -214,7 +220,7 @@ function PanelPacjent() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 85,
+                                lineNumber: 91,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -222,7 +228,7 @@ function PanelPacjent() {
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                lineNumber: 60,
+                lineNumber: 66,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -233,14 +239,14 @@ function PanelPacjent() {
                         children: "Nadchodzące wizyty"
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 91,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, this),
                     appointments.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "Brak zaplanowanych wizyt."
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 93,
+                        lineNumber: 99,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                         className: "space-y-4",
@@ -255,7 +261,7 @@ function PanelPacjent() {
                                                         children: "Data:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                        lineNumber: 99,
+                                                        lineNumber: 105,
                                                         columnNumber: 22
                                                     }, this),
                                                     " ",
@@ -263,7 +269,7 @@ function PanelPacjent() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                lineNumber: 99,
+                                                lineNumber: 105,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -272,7 +278,7 @@ function PanelPacjent() {
                                                         children: "Lekarz:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                        lineNumber: 100,
+                                                        lineNumber: 106,
                                                         columnNumber: 22
                                                     }, this),
                                                     " ",
@@ -280,7 +286,7 @@ function PanelPacjent() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 106,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -289,7 +295,7 @@ function PanelPacjent() {
                                                         children: "Oddział:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                        lineNumber: 101,
+                                                        lineNumber: 107,
                                                         columnNumber: 22
                                                     }, this),
                                                     " ",
@@ -297,7 +303,7 @@ function PanelPacjent() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                lineNumber: 101,
+                                                lineNumber: 107,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -306,7 +312,7 @@ function PanelPacjent() {
                                                         children: "Status:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                        lineNumber: 103,
+                                                        lineNumber: 109,
                                                         columnNumber: 21
                                                     }, this),
                                                     ' ',
@@ -315,19 +321,19 @@ function PanelPacjent() {
                                                         children: appt.status === 'confirmed' ? 'Potwierdzona' : appt.status === 'pending' ? 'Oczekująca' : 'Anulowana'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                        lineNumber: 104,
+                                                        lineNumber: 110,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 108,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 104,
                                         columnNumber: 17
                                     }, this),
                                     appt.status === 'pending' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -336,24 +342,24 @@ function PanelPacjent() {
                                         children: "Odwołaj"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 129,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, index, true, {
                                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                                lineNumber: 97,
+                                lineNumber: 103,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 95,
+                        lineNumber: 101,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                lineNumber: 90,
+                lineNumber: 96,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -366,12 +372,12 @@ function PanelPacjent() {
                             children: "Umów wizytę"
                         }, void 0, false, {
                             fileName: "[project]/src/app/panelpacjent/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 144,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 137,
+                        lineNumber: 143,
                         columnNumber: 9
                     }, this),
                     isEditing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -380,7 +386,7 @@ function PanelPacjent() {
                         children: "Zapisz zmiany"
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 144,
+                        lineNumber: 150,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>setIsEditing(true),
@@ -388,19 +394,19 @@ function PanelPacjent() {
                         children: "Edytuj profil"
                     }, void 0, false, {
                         fileName: "[project]/src/app/panelpacjent/page.tsx",
-                        lineNumber: 151,
+                        lineNumber: 157,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/panelpacjent/page.tsx",
-                lineNumber: 136,
+                lineNumber: 142,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/panelpacjent/page.tsx",
-        lineNumber: 57,
+        lineNumber: 63,
         columnNumber: 5
     }, this);
 }

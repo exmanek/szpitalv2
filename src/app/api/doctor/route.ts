@@ -29,28 +29,28 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// GET /api/user?id=123
+// GET /api/doctor?id=123
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
 
   if (id) {
-    const user = await prisma.user.findUnique({
-      where: { userId: Number(id) },
+    const doctor = await prisma.doctor.findUnique({
+      where: { doctorId: Number(id) },
     })
 
-    if (!user) {
+    if (!doctor) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    return NextResponse.json(user)
+    return NextResponse.json(doctor)
   } else {
-    const users = await prisma.user.findMany()
+    const users = await prisma.doctor.findMany()
     return NextResponse.json(users)
   }
 }
 
-// PUT /api/user?id=123
+// PUT /api/doctor?id=123
 export async function PUT(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
@@ -67,18 +67,18 @@ export async function PUT(req: NextRequest) {
     if (email) updateData.email = email
     if (password) updateData.password = await bcrypt.hash(password, 10)
 
-    const user = await prisma.user.update({
-      where: { userId: Number(id) },
+    const doctor = await prisma.doctor.update({
+      where: { doctorId: Number(id) },
       data: updateData,
     })
 
-    return NextResponse.json({ success: true, user })
+    return NextResponse.json({ success: true, doctor })
   } catch (err) {
     return NextResponse.json({ error: 'Update failed', details: err }, { status: 500 })
   }
 }
 
-// DELETE /api/user?id=123
+// DELETE /api/doctor?id=123
 export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')
@@ -86,8 +86,8 @@ export async function DELETE(req: NextRequest) {
   if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 })
 
   try {
-    await prisma.user.delete({
-      where: { userId: Number(id) },
+    await prisma.doctor.delete({
+      where: { doctorId: Number(id) },
     })
 
     return NextResponse.json({ success: true, message: 'User deleted' })

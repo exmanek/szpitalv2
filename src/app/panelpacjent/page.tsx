@@ -22,17 +22,23 @@ export default function PanelPacjent() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('registeredUser');
-    if (storedUser) {
-      setPatient(JSON.parse(storedUser));
+useEffect(() => {
+  const fetchData = async () => {
+    const res = await fetch('/api/me');
+    if (res.ok) {
+      const userData = await res.json();
+      setPatient({
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+        patientId: `PL-${userData.id}`,
+        password: '',
+      });
     }
+  };
+  fetchData();
+}, []);
 
-    const storedAppointments = localStorage.getItem('appointments');
-    if (storedAppointments) {
-      setAppointments(JSON.parse(storedAppointments));
-    }
-  }, []);
 
   const handleChange = (field: string, value: string) => {
     setPatient((prev) => ({ ...prev, [field]: value }));

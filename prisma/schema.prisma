@@ -13,7 +13,7 @@ model User {
   surname    String
   email      String        @unique
   password   String
-  phone      String
+  phone      String?
   appointments Appointment[]
 }
 

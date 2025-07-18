@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 // POST /api/user
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { name, surname, email, password } = body
+  const { name, surname, email, password, phone } = body
 
   if (!name || !surname || !email || !password) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
         surname,
         email,
         password: hashedPassword,
+        phone,
       },
     })
 
